@@ -36,7 +36,11 @@ namespace LinqToSQL
             //StudentLectureAssociation();
             //GetUniversityOfToni();
             //GetLectureOfTony();
-            GetAllStudentsFromYale();
+            //GetAllStudentsFromYale();
+            //getAllUniversitiesWithFemales();
+            //            GetAllLecturesGeneve();
+            //UpdateToni();
+            DeleteJame();
         }
 
         public void InsertUniversities()
@@ -149,5 +153,50 @@ namespace LinqToSQL
             
             MainDataGrid.ItemsSource = yaleStudents;
         }
+
+        public void getAllUniversitiesWithFemales()
+        {
+            var femalUniversities = from student in dataContext.Students
+                                    join university in dataContext.Universities
+                                    on student.UniversityId equals university.Id
+                                    where student.Gender == "Female"
+                                    select university;
+
+            MainDataGrid.ItemsSource = femalUniversities;   
+        }
+
+        public void GetAllLecturesGeneve()
+        {
+            // Linq erzeugt automatisch joins fuer 'student.University.Name' die er anhand der voren keys hatt
+            var uniLectures = from sl in dataContext.StudentLectures
+                              join student in dataContext.Students on sl.StudentId equals student.Id
+                              where student.University.Name == "Geneve"
+                              select sl.Lecture;
+
+            MainDataGrid.ItemsSource = uniLectures;
+                              
+        }
+
+        public void UpdateToni()
+        {
+            Student Toni = dataContext.Students.FirstOrDefault(st => st.Name == "Toni");
+
+            Toni.Name = "Antonio";
+
+            dataContext.SubmitChanges();
+
+            MainDataGrid.ItemsSource = dataContext.Students;
+        }
+
+        public void DeleteJame()
+        {
+            Student Jame = dataContext.Students.FirstOrDefault(st => st.Name == "Jame");
+
+            dataContext.Students.DeleteOnSubmit(Jame);
+            dataContext.SubmitChanges();
+
+            MainDataGrid.ItemsSource = dataContext.Students;
+        }
+
     }
 }
