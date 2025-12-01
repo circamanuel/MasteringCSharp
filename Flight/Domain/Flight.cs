@@ -11,6 +11,12 @@ namespace Domain
 
         public int RemainingNumberOfSeats { get; set; }
 
+        public Guid Id { get; set; }
+
+        [Obsolete("Needed by EF")]
+        Flight() { }
+
+
         public Flight(int seatCapacity) { RemainingNumberOfSeats = seatCapacity; }
 
         public object? Book(string passengerEmail, int numberOfSeats)

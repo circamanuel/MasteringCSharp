@@ -1,4 +1,7 @@
 <Solution>
+  <Project Path="Application.Test/Application.Test.csproj" Id="c3dc361c-0d7c-4bba-93e4-8d3e3b7e85d7" />
+  <Project Path="Application/Application.csproj" Id="f9e5335d-c2db-4de8-ac33-d3d88cd555ac" />
+  <Project Path="Data/Data.csproj" Id="c3383e5d-e6c5-4bd9-99f3-aec7b8e097e6" />
   <Project Path="Domain.Tests/Domain.Tests.csproj" />
   <Project Path="Domain/Domain.csproj" />
   <Project Path="Flight/Flight.csproj" />
